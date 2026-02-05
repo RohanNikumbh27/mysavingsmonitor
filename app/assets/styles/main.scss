@@ -16,35 +16,89 @@ html, body {
 // ============================================
 // Mobile Dialog & Modal Animations
 // ============================================
-// Ensure dialog transitions work on mobile devices
+// Ensure dialog transitions work on mobile devices with GPU acceleration
 .v-dialog {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  // Force GPU acceleration for smoother mobile animations
+  will-change: transform, opacity;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  -webkit-transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                      opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   
   > .v-overlay__content {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: transform, opacity;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
 }
 
 .v-overlay {
-  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  will-change: opacity;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  -webkit-transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   
   &__scrim {
-    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    will-change: opacity;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+}
+
+// Mobile-specific longer animations for better visibility
+@media (max-width: 600px) {
+  .v-dialog {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    -webkit-transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    
+    > .v-overlay__content {
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                  opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      -webkit-transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                          opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
   }
 }
 
 // Navigation drawer transitions
 .v-navigation-drawer {
+  will-change: transform, width;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
               width 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  -webkit-transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                      width 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 // Menu transitions
 .v-menu > .v-overlay__content {
+  will-change: transform, opacity;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.6, 1), 
               opacity 0.25s cubic-bezier(0.4, 0, 0.6, 1) !important;
+  -webkit-transition: transform 0.25s cubic-bezier(0.4, 0, 0.6, 1), 
+                      opacity 0.25s cubic-bezier(0.4, 0, 0.6, 1) !important;
 }
 
 // ============================================

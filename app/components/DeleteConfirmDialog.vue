@@ -1,7 +1,7 @@
 <template>
   <v-btn v-bind="$attrs" variant="tonal" icon="mdi-delete" color="error">
     <v-icon>mdi-delete</v-icon>
-    <v-dialog activator="parent" :width="$vuetify.display.mobile ? '90%' : '400'" max-width="400" scrim="error" transition="dialog-bottom-transition">
+    <v-dialog activator="parent" :width="$vuetify.display.mobile ? '90%' : '400'" max-width="400" scrim="error" transition="scale-transition">
       <template v-slot:default="{ isActive }">
         <v-card class="rounded-xl" prepend-icon="mdi-delete-outline" title="Delete Saving">
           <template v-slot:text>
