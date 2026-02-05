@@ -4,8 +4,8 @@
   "description": "Track your smart savings journey with MySavings. Save smarter, achieve your financial goals faster.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#000000",
+  "theme_color": "#ffffff",
   "orientation": "portrait-primary",
   "icons": [
     {
