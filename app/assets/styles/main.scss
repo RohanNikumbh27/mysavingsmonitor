@@ -111,7 +111,7 @@ html, body {
 }
 
 .hover-lift {
-  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
   
   &:hover {
     transform: translateY(-4px);
@@ -124,7 +124,7 @@ html, body {
 // Card Enhancements
 // ============================================
 .savings-card {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  // Transition handled by .hover-lift
   border: 1px solid rgba(var(--v-theme-outline-variant), 0.5);
   
   &:hover {
