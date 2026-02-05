@@ -97,7 +97,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useTheme } from 'vuetify'
 
 const theme = useTheme()
@@ -111,7 +111,16 @@ const navItems = [
   { title: 'Savings', icon: 'mdi-cash-multiple', to: '/savings' },
 ]
 
+onMounted(() => {
+  const savedTheme = localStorage.getItem('theme')
+  if (savedTheme) {
+    theme.global.name.value = savedTheme
+  }
+})
+
 function toggleTheme() {
-  theme.global.name.value = isDark.value ? 'light' : 'dark'
+  const newTheme = isDark.value ? 'light' : 'dark'
+  theme.global.name.value = newTheme
+  localStorage.setItem('theme', newTheme)
 }
 </script>
