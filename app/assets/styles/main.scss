@@ -14,33 +14,37 @@ html, body {
 }
 
 // ============================================
-// Force Enable Animations on Mobile
+// Mobile Dialog & Modal Animations
 // ============================================
-// Override prefers-reduced-motion to ensure animations work on mobile
-// even when user has "Reduce Motion" enabled in accessibility settings
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+// Ensure dialog transitions work on mobile devices
+.v-dialog {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  
+  > .v-overlay__content {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
 }
 
-// Force enable Vuetify transitions
-.v-dialog,
-.v-overlay,
-.v-menu,
-.v-list,
-.v-card,
-.v-btn,
-.v-navigation-drawer {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+.v-overlay {
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  
+  &__scrim {
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
 }
 
-.v-overlay__scrim {
-  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+// Navigation drawer transitions
+.v-navigation-drawer {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              width 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+// Menu transitions
+.v-menu > .v-overlay__content {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.6, 1), 
+              opacity 0.25s cubic-bezier(0.4, 0, 0.6, 1) !important;
 }
 
 // ============================================
