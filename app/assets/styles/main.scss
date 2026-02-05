@@ -14,6 +14,36 @@ html, body {
 }
 
 // ============================================
+// Force Enable Animations on Mobile
+// ============================================
+// Override prefers-reduced-motion to ensure animations work on mobile
+// even when user has "Reduce Motion" enabled in accessibility settings
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// Force enable Vuetify transitions
+.v-dialog,
+.v-overlay,
+.v-menu,
+.v-list,
+.v-card,
+.v-btn,
+.v-navigation-drawer {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.v-overlay__scrim {
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+// ============================================
 // Custom Animations
 // ============================================
 @keyframes fadeInUp {

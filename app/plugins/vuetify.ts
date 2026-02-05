@@ -88,8 +88,10 @@ export default defineNuxtPlugin((app: any) => {
                 dark: darkTheme,
             },
         },
+        ssr: false,
         defaults: {
             global: {
+                ripple: true,
                 font: {
                     family: 'Poppins, sans-serif',
                 },
