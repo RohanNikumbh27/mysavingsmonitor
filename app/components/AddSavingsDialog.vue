@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" :width="$vuetify.display.mobile ? '90%' : '500'" max-width="500" transition="scale-transition">
+  <v-dialog v-model="dialog" :width="$vuetify.display.mobile ? '90%' : '500'" max-width="500">
     <template v-slot:activator="{ props }">
       <slot name="activator" :props="props" />
     </template>
