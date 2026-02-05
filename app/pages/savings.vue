@@ -153,8 +153,9 @@
                   <template #activator="{ props }">
                     <v-btn
                       v-bind="props"
+                      width="55" height="55" class="my-1"
                       icon="mdi-pencil"
-                      variant="text"
+                      variant="tonal"
                       density="comfortable"
                       color="medium-emphasis"
                     ></v-btn>
@@ -165,8 +166,9 @@
                   <template #activator="{ props }">
                     <v-btn
                       v-bind="props"
+                      width="55" height="55" class="my-1"
                       icon="mdi-delete"
-                      variant="text"
+                      variant="tonal"
                       density="comfortable"
                       color="error"
                     ></v-btn>

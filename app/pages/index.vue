@@ -118,15 +118,15 @@
             </template>
 
             <template #item.actions="{ item }">
-              <div class="d-flex justify-end">
+              <div class="d-flex justify-end align-center ga-1">
                 <EditSavingsDialog :entry="item">
                   <template #activator="{ props }">
-                    <v-btn v-bind="props" icon="mdi-pencil" variant="text" size="small" color="medium-emphasis"></v-btn>
+                    <v-btn v-bind="props" icon="mdi-pencil" variant="tonal" size="small" width="55" height="55" class="my-1" background color="medium-emphasis"></v-btn>
                   </template>
                 </EditSavingsDialog>
                 <DeleteConfirmDialog :entry="item">
                   <template #activator="{ props }">
-                    <v-btn v-bind="props" icon="mdi-delete" variant="text" size="small" color="error"></v-btn>
+                    <v-btn v-bind="props" width="55" height="55" class="my-1" icon="mdi-delete" variant="tonal" size="small" color="error"></v-btn>
                   </template>
                 </DeleteConfirmDialog>
               </div>
@@ -142,29 +142,20 @@
     </v-tabs-window>
 
     <!-- FAB for adding new savings -->
-    <v-fab
-      v-if="savingsStore.totalEntries > 0"
-      icon="mdi-plus"
-      color="primary"
-      location="bottom end"
-      size="large"
-      class="fab-animated"
-      app
-      appear
-    >
-      <AddSavingsDialog>
-        <template #activator="{ props }">
-          <v-btn
-            v-bind="props"
-            icon="mdi-plus"
-            color="primary"
-            size="large"
-            variant="elevated"
-            class="fab-animated"
-          />
-        </template>
-      </AddSavingsDialog>
-    </v-fab>
+    <AddSavingsDialog v-if="savingsStore.totalEntries > 0">
+      <template #activator="{ props }">
+        <v-btn
+          v-bind="props"
+          icon="mdi-plus"
+          color="primary"
+          size="large"
+          height="60"
+          width="60"
+          class="fab-animated position-fixed elevation-4"
+          style="bottom: 24px; right: 24px; z-index: 100;"
+        />
+      </template>
+    </AddSavingsDialog>
   </div>
 </template>
 
