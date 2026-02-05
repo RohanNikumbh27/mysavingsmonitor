@@ -9,14 +9,16 @@
     >
       <template v-slot:prepend>
         <v-btn
-          v-if="$vuetify.display.mobile"
           icon
-          variant="text"
+          width="60"
+          height="50"
+          variant="tonal"
+          class="mr-2"
           @click="drawer = !drawer"
         >
           <v-icon>mdi-menu</v-icon>
         </v-btn>
-        <div v-else class="d-flex align-center ml-2">
+        <div v-if="!$vuetify.display.mobile" class="d-flex align-center ml-2">
           <v-icon color="primary" size="28" class="mr-2">mdi-piggy-bank</v-icon>
           <span class="text-h6 font-weight-bold text-gradient">MySavings</span>
         </div>
@@ -43,13 +45,10 @@
       </v-btn>
     </v-app-bar>
 
-    <!-- Navigation Drawer for Mobile -->
-    <!-- Navigation Drawer for Mobile -->
+    <!-- Navigation Drawer -->
     <v-navigation-drawer
       v-model="drawer"
       :rail="!$vuetify.display.mobile && rail"
-      :permanent="!$vuetify.display.mobile"
-      :temporary="$vuetify.display.mobile"
       @click="rail = false"
       border="none"
       elevation="1"
@@ -65,8 +64,8 @@
           :to="item.to"
           :prepend-icon="item.icon"
           :title="item.title"
-          rounded="lg"
-          class="mb-2"
+          rounded="xl"
+          class="mb-2 pa-5"
           :active="$route.path === item.to"
           color="primary"
           variant="text"
@@ -98,9 +97,10 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { useTheme } from 'vuetify'
+import { useTheme, useDisplay } from 'vuetify'
 
 const theme = useTheme()
+const display = useDisplay()
 const drawer = ref(false)
 const rail = ref(false)
 
@@ -116,6 +116,9 @@ onMounted(() => {
   if (savedTheme) {
     theme.global.name.value = savedTheme
   }
+  
+  // Open drawer by default on desktop, closed on mobile
+  drawer.value = !display.mobile.value
 })
 
 function toggleTheme() {
