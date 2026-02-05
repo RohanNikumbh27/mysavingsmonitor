@@ -2,7 +2,7 @@
   <div>
     <slot name="activator" :props="activatorProps" />
 
-    <v-dialog v-model="dialog" max-width="500">
+    <v-dialog v-model="dialog" :width="$vuetify.display.mobile ? '90%' : '500'" max-width="500">
       <v-card class="rounded-xl" prepend-icon="mdi-pencil" title="Edit Saving">
         <v-card-text class="pa-5">
           <v-form ref="formRef" v-model="formValid" @submit.prevent="handleSubmit">
@@ -17,17 +17,7 @@
               class="mb-3"
             />
 
-            <!-- Description -->
-            <v-textarea
-              v-model="form.description"
-              label="Description (optional)"
-              placeholder="Add any details about this saving..."
-              prepend-inner-icon="mdi-text-box"
-              rows="2"
-              auto-grow
-              variant="outlined"
-              class="mb-3"
-            />
+
 
             <!-- Original Price -->
             <v-text-field
@@ -78,7 +68,7 @@
                   variant="outlined"
                   readonly
                   v-bind="props"
-                  class="mb-4"
+                  class="mb-1"
                 />
               </template>
               <v-date-picker
