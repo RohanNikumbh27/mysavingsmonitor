@@ -13,6 +13,22 @@ html, body {
   scroll-behavior: smooth;
 }
 
+// ============================================
+// Sidebar/Navigation Drawer Animation
+// ============================================
+.v-navigation-drawer {
+  // GPU acceleration for smooth mobile animations
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  -webkit-transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+
 
 // ============================================
 // Custom Animations
