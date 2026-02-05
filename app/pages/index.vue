@@ -78,18 +78,61 @@
           </AddSavingsDialog>
         </v-card>
 
-        <!-- Recent Entries List -->
-        <v-row v-else>
-          <v-col 
-            v-for="entry in savingsStore.recentEntries" 
-            :key="entry.id"
-            cols="12"
-            md="6"
-            lg="4"
+        <!-- Recent Entries Table -->
+        <v-card v-else variant="flat" class="border rounded-lg overflow-hidden">
+          <v-data-table
+            :headers="headers"
+            :items="savingsStore.recentEntries"
+            item-value="id"
+            hide-default-footer
+            hover
+            class="bg-transparent"
           >
-            <SavingsCard :entry="entry" />
-          </v-col>
-        </v-row>
+            <template #item.title="{ item }">
+              <div class="font-weight-bold">{{ item.title }}</div>
+              <div v-if="item.description" class="text-caption text-medium-emphasis text-truncate" style="max-width: 200px">
+                {{ item.description }}
+              </div>
+            </template>
+
+            <template #item.date="{ item }">
+              {{ formatDate(item.date) }}
+            </template>
+
+            <template #item.originalPrice="{ item }">
+              <span class="text-medium-emphasis text-decoration-line-through">
+                ₹{{ item.originalPrice.toLocaleString('en-IN') }}
+              </span>
+            </template>
+
+            <template #item.paidPrice="{ item }">
+              <span class="font-weight-medium">
+                ₹{{ item.paidPrice.toLocaleString('en-IN') }}
+              </span>
+            </template>
+
+            <template #item.savedAmount="{ item }">
+              <v-chip color="success" size="small" variant="tonal" label>
+                ₹{{ item.savedAmount.toLocaleString('en-IN') }}
+              </v-chip>
+            </template>
+
+            <template #item.actions="{ item }">
+              <div class="d-flex justify-end">
+                <EditSavingsDialog :entry="item">
+                  <template #activator="{ props }">
+                    <v-btn v-bind="props" icon="mdi-pencil" variant="text" size="small" color="medium-emphasis"></v-btn>
+                  </template>
+                </EditSavingsDialog>
+                <DeleteConfirmDialog :entry="item">
+                  <template #activator="{ props }">
+                    <v-btn v-bind="props" icon="mdi-delete" variant="text" size="small" color="error"></v-btn>
+                  </template>
+                </DeleteConfirmDialog>
+              </div>
+            </template>
+          </v-data-table>
+        </v-card>
       </v-tabs-window-item>
 
       <!-- Summary Tab -->
@@ -131,4 +174,21 @@ import { useSavingsStore } from '~/stores/savingsStore'
 
 const savingsStore = useSavingsStore()
 const activeTab = ref('savings')
+
+const headers = [
+  { title: 'Title', key: 'title', align: 'start' },
+  { title: 'Date', key: 'date', align: 'start' },
+  { title: 'Original', key: 'originalPrice', align: 'end' },
+  { title: 'Paid', key: 'paidPrice', align: 'end' },
+  { title: 'Saved', key: 'savedAmount', align: 'end' },
+  { title: 'Actions', key: 'actions', align: 'end', sortable: false },
+] as const
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString)
+  return date.toLocaleDateString('en-IN', {
+    day: 'numeric',
+    month: 'short',
+  })
+}
 </script>

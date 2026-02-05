@@ -3,6 +3,16 @@
     <!-- Header Section -->
     <div class="d-flex flex-column flex-md-row align-md-center justify-space-between mb-6">
       <div class="mb-4 mb-md-0">
+        <v-btn
+          variant="text"
+          color="medium-emphasis"
+          prepend-icon="mdi-arrow-left"
+          to="/"
+          class="mb-2 pl-0"
+          density="compact"
+        >
+          Back to Dashboard
+        </v-btn>
         <h1 class="text-h4 text-md-h3 font-weight-bold mb-2">
           <span class="text-gradient">My Savings</span>
         </h1>
