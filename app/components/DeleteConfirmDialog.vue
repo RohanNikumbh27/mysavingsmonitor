@@ -23,8 +23,8 @@
 
         <v-card-actions class="px-5 pb-5 ga-3">
           <v-btn
-            variant="outlined"
-            color="primary"
+            variant="tonal"
+            color="black"
             class="flex-grow-1"
             text="Cancel"
             @click="dialog = false"
