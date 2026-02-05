@@ -352,12 +352,8 @@ html {
   border-radius: 24px !important; // Rounded borders for the picker container
   overflow: hidden;
   
-  // Make the selected date circle smaller and centered
-  .v-date-picker-month__day--selected {
-    .v-btn__content {
-      font-weight: 700;
-    }
-    
+  // Make date circles smaller and centered (both selected and current)
+  .v-date-picker-month__day {
     .v-btn--icon {
       width: 32px !important;
       height: 32px !important;
@@ -365,6 +361,16 @@ html {
       &.v-btn--size-default {
         --v-btn-height: 32px;
       }
+    }
+    
+    // Specifically handle the outlined "current day" button
+    .v-btn--outlined {
+      border-width: 1px;
+    }
+
+    // Selected state adjustments
+    &--selected .v-btn__content {
+      font-weight: 700;
     }
   }
   
