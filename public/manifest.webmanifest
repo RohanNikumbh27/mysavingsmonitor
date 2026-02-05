@@ -1,11 +1,11 @@
 {
-  "name": "MySavings - Track Your Smart Savings",
+  "name": "MySavings",
   "short_name": "MySavings",
   "description": "Track your smart savings journey with MySavings. Save smarter, achieve your financial goals faster.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1a1a2e",
-  "theme_color": "#6366f1",
+  "background_color": "#ffffff",
+  "theme_color": "##000000",
   "orientation": "portrait-primary",
   "icons": [
     {
