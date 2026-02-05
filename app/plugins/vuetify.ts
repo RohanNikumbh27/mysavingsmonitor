@@ -114,7 +114,7 @@ export default defineNuxtPlugin((app: any) => {
                 color: 'primary',
                 rounded: 'xl',
                 height: 70,
-                style: 'text-transform: none; font-weight: 600; font-family: Poppins, sans-serif;',
+                style: 'text-transform: none; font-weight: 600; font-family: Poppins, sans-serif; padding-inline: 20px;',
             },
             VCard: {
                 rounded: 'xl',

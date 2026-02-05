@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <slot name="activator" :props="activatorProps" />
-
-    <v-dialog v-model="dialog" :width="$vuetify.display.mobile ? '90%' : '500'" max-width="500">
-      <v-card class="rounded-xl" prepend-icon="mdi-pencil" title="Edit Saving">
+  <v-dialog v-model="dialog" :width="$vuetify.display.mobile ? '90%' : '500'" max-width="500">
+    <template v-slot:activator="{ props }">
+      <slot name="activator" :props="props" />
+    </template>
+    <v-card class="rounded-xl" prepend-icon="mdi-pencil" title="Edit Saving">
         <v-card-text class="pa-5">
           <v-form ref="formRef" v-model="formValid" @submit.prevent="handleSubmit">
             <!-- Title -->
@@ -113,7 +113,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -132,7 +131,6 @@ const dateMenu = ref(false)
 
 const createFormFromEntry = () => ({
   title: props.entry.title,
-  description: props.entry.description,
   originalPrice: props.entry.originalPrice,
   paidPrice: props.entry.paidPrice,
   date: props.entry.date,
@@ -175,9 +173,7 @@ const savedAmount = computed(() => {
   return Math.max(0, original - paid)
 })
 
-const activatorProps = computed(() => ({
-  onClick: () => { dialog.value = true }
-}))
+
 
 watch(dialog, (isOpen) => {
   if (isOpen) {
@@ -194,7 +190,7 @@ function handleSubmit() {
   
   savingsStore.updateEntry(props.entry.id, {
     title: form.value.title,
-    description: form.value.description,
+    description: '',
     originalPrice: form.value.originalPrice || 0,
     paidPrice: form.value.paidPrice || 0,
     date: form.value.date,

@@ -357,6 +357,7 @@ html {
     .v-btn--icon {
       width: 32px !important;
       height: 32px !important;
+      padding: 0 !important; // Reset global padding-inline: 20px
       
       &.v-btn--size-default {
         --v-btn-height: 32px;

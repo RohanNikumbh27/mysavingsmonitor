@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <slot name="activator" :props="activatorProps" />
-
-    <v-dialog v-model="dialog" :width="$vuetify.display.mobile ? '90%' : '500'" max-width="500">
-      <v-card class="rounded-xl" prepend-icon="mdi-plus-circle-outline" title="Add New Saving">
+  <v-dialog v-model="dialog" :width="$vuetify.display.mobile ? '90%' : '500'" max-width="500">
+    <template v-slot:activator="{ props }">
+      <slot name="activator" :props="props" />
+    </template>
+    <v-card class="rounded-xl" prepend-icon="mdi-plus-circle-outline" title="Add New Saving">
         <v-card-text class="pa-5">
           <v-form ref="formRef" v-model="formValid" @submit.prevent="handleSubmit">
             <!-- Title -->
@@ -111,8 +111,7 @@
           />
         </v-card-actions>
       </v-card>
-    </v-dialog>
-  </div>
+  </v-dialog>
 </template>
 
 <script setup lang="ts">
@@ -169,9 +168,7 @@ const savedAmount = computed(() => {
   return Math.max(0, original - paid)
 })
 
-const activatorProps = computed(() => ({
-  onClick: () => { dialog.value = true }
-}))
+
 
 watch(dialog, (isOpen) => {
   if (isOpen) {
