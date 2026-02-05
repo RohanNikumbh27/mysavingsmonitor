@@ -31,8 +31,8 @@
           density="comfortable"
           @update:model-value="saveViewMode"
         >
-          <v-btn value="grid" icon="mdi-view-grid"></v-btn>
           <v-btn value="list" icon="mdi-view-list"></v-btn>
+          <v-btn value="grid" icon="mdi-view-grid"></v-btn>
         </v-btn-toggle>
 
         <AddSavingsDialog>
@@ -180,7 +180,7 @@ import { ref, onMounted } from 'vue'
 import { useSavingsStore } from '~/stores/savingsStore'
 
 const savingsStore = useSavingsStore()
-const viewMode = ref<'grid' | 'list'>('grid')
+const viewMode = ref<'grid' | 'list'>('list')
 
 function saveViewMode() {
   localStorage.setItem('savingsViewMode', viewMode.value)
