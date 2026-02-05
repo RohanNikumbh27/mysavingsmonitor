@@ -1,0 +1,346 @@
+// MySavings - Global Styles
+// Material 3 Expressive Theme Enhancements
+
+// ============================================
+// Typography
+// ============================================
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+html, body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+// ============================================
+// Custom Animations
+// ============================================
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+// Animation classes
+.fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.scale-in {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.4s ease-out forwards;
+}
+
+// ============================================
+// Utility Classes
+// ============================================
+.text-gradient {
+  background: linear-gradient(135deg, rgb(var(--v-theme-primary)) 0%, rgb(var(--v-theme-accent)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-warm {
+  background: linear-gradient(135deg, rgb(var(--v-theme-savings)) 0%, rgb(var(--v-theme-secondary)) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-effect {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(var(--v-theme-surface), 0.85) !important;
+  border: 1px solid rgba(var(--v-theme-outline), 0.1);
+}
+
+.soft-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08),
+              0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12),
+                0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+}
+
+// ============================================
+// Card Enhancements
+// ============================================
+.savings-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(var(--v-theme-outline-variant), 0.5);
+  
+  &:hover {
+    border-color: rgba(var(--v-theme-primary), 0.3);
+    box-shadow: 0 8px 32px rgba(var(--v-theme-primary), 0.1),
+                0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.stats-card {
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(var(--v-theme-primary), 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+}
+
+// ============================================
+// Button Enhancements
+// ============================================
+.v-btn {
+  text-transform: none !important;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  
+  &.v-btn--variant-tonal {
+    transition: all 0.2s ease;
+    
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+// ============================================
+// Dialog Enhancements
+// ============================================
+.v-dialog {
+  .v-card {
+    border: 1px solid rgba(var(--v-theme-outline-variant), 0.3);
+  }
+}
+
+// ============================================
+// Form Enhancements
+// ============================================
+.v-text-field, .v-select {
+  .v-field {
+    transition: all 0.2s ease;
+    
+    &:focus-within {
+      box-shadow: 0 0 0 3px rgba(var(--v-theme-primary), 0.1);
+    }
+  }
+}
+
+// ============================================
+// Chip Enhancements
+// ============================================
+.category-chip {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  
+  &.food { background: linear-gradient(135deg, #FF9800 0%, #FFB74D 100%) !important; }
+  &.shopping { background: linear-gradient(135deg, #E91E63 0%, #F06292 100%) !important; }
+  &.transport { background: linear-gradient(135deg, #2196F3 0%, #64B5F6 100%) !important; }
+  &.utilities { background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%) !important; }
+  &.other { background: linear-gradient(135deg, #9C27B0 0%, #BA68C8 100%) !important; }
+}
+
+// ============================================
+// Navigation Rail & App Bar
+// ============================================
+.v-app-bar {
+  border-bottom: 1px solid rgba(var(--v-theme-outline), 0.08) !important;
+}
+
+.v-navigation-drawer {
+  border-right: 1px solid rgba(var(--v-theme-outline), 0.08) !important;
+}
+
+// ============================================
+// FAB Enhancements
+// ============================================
+.fab-animated {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover {
+    transform: scale(1.1) rotate(90deg);
+  }
+}
+
+// ============================================
+// Scrollbar Styling
+// ============================================
+
+// Use overlay scrollbars to prevent layout shifts
+html {
+  overflow-y: overlay;
+  scrollbar-gutter: stable;
+}
+
+// Firefox scrollbar
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(128, 128, 128, 0.4) transparent;
+}
+
+// WebKit scrollbar - using neutral gray that works in both themes
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.4);
+  border-radius: 4px;
+  
+  &:hover {
+    background: rgba(128, 128, 128, 0.6);
+  }
+}
+
+// ============================================
+// Page Transitions
+// ============================================
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.3s ease;
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+// ============================================
+// Responsive Utilities
+// ============================================
+@media (max-width: 600px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+  
+  // Mobile-specific card padding
+  .savings-card,
+  .stats-card {
+    .v-card-text {
+      padding: 1rem !important;
+    }
+  }
+  
+  // Smaller headings on mobile
+  .text-h3 {
+    font-size: 1.75rem !important;
+  }
+  
+  .text-h4 {
+    font-size: 1.5rem !important;
+  }
+  
+  // Ensure all cards have proper rounding
+  .v-card {
+    border-radius: 16px !important;
+  }
+  
+  // Better button sizing on mobile
+  .v-btn:not(.v-btn--icon) {
+    min-height: 48px;
+  }
+}
+
+@media (min-width: 601px) {
+  .show-on-mobile-only {
+    display: none !important;
+  }
+}
+
+// ============================================
+// Global Rounding & Padding
+// ============================================
+.v-card {
+  border-radius: 24px !important;
+}
+
+.v-alert {
+  border-radius: 16px !important;
+}
+
+.v-avatar {
+  border-radius: 50% !important;
+}
+
+// Ensure proper content padding
+.v-card-text {
+  padding: 1.25rem;
+}
+
+.v-card-actions {
+  padding: 1rem 1.25rem;
+}
+
