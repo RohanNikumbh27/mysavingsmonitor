@@ -95,7 +95,7 @@
 
         <v-card-actions class="px-5 pb-5 ga-3">
           <v-btn
-            variant="outlined"
+            variant="tonal"
             color="primary"
             class="flex-grow-1"
             text="Cancel"
