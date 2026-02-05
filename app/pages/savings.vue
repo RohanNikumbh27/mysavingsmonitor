@@ -162,18 +162,7 @@
                   </template>
                 </EditSavingsDialog>
 
-                <DeleteConfirmDialog :entry="entry">
-                  <template #activator="{ props }">
-                    <v-btn
-                      v-bind="props"
-                      width="55" height="55" class="my-1"
-                      icon="mdi-delete"
-                      variant="tonal"
-                      density="comfortable"
-                      color="error"
-                    ></v-btn>
-                  </template>
-                </DeleteConfirmDialog>
+                <DeleteConfirmDialog :entry="entry" width="55" height="55" class="my-1" density="comfortable" />
               </div>
             </template>
           </v-list-item>

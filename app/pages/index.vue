@@ -124,11 +124,7 @@
                     <v-btn v-bind="props" icon="mdi-pencil" variant="tonal" size="small" width="55" height="55" class="my-1" background color="medium-emphasis"></v-btn>
                   </template>
                 </EditSavingsDialog>
-                <DeleteConfirmDialog :entry="item">
-                  <template #activator="{ props }">
-                    <v-btn v-bind="props" width="55" height="55" class="my-1" icon="mdi-delete" variant="tonal" size="small" color="error"></v-btn>
-                  </template>
-                </DeleteConfirmDialog>
+                <DeleteConfirmDialog :entry="item" size="small" width="55" height="55" class="my-1" />
               </div>
             </template>
           </v-data-table>
