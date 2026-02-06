@@ -11,34 +11,34 @@
     </div>
 
     <!-- Tabs -->
-    <div class="d-flex ga-2 mb-4 overflow-x-auto absolute">
+    <div class="d-flex ga-1 mb-4 overflow-x-auto absolute">
       <v-btn
-        :variant="activeTab === 'savings' ? 'flat' : 'tonal'"
+        :variant="activeTab === 'savings' ? 'flat' : 'text'"
         :color="activeTab === 'savings' ? 'primary' : undefined"
         prepend-icon="mdi-piggy-bank"
         rounded="pill"
         @click="activeTab = 'savings'"
-        class="px-5"
+        class="px-4"
       >
         Savings
       </v-btn>
       <v-btn
-        :variant="activeTab === 'udhari' ? 'flat' : 'tonal'"
+        :variant="activeTab === 'udhari' ? 'flat' : 'text'"
         :color="activeTab === 'udhari' ? 'primary' : undefined"
         prepend-icon="mdi-account-cash"
         rounded="pill"
         @click="activeTab = 'udhari'"
-        class="px-5"
+        class="px-4"
       >
         Udhari
       </v-btn>
       <v-btn
-        :variant="activeTab === 'summary' ? 'flat' : 'tonal'"
+        :variant="activeTab === 'summary' ? 'flat' : 'text'"
         :color="activeTab === 'summary' ? 'primary' : undefined"
         prepend-icon="mdi-chart-box-outline"
         rounded="pill"
         @click="activeTab = 'summary'"
-        class="px-5"
+        class="px-4"
       >
         Summary
       </v-btn>

@@ -51,7 +51,7 @@
         </div>
         <div class="summary-content">
           <div class="summary-label">You Will Give</div>
-          <div class="summary-amount text-error">₹{{ summary.totalGave.toLocaleString('en-IN') }}</div>
+          <div class="summary-amount text-error">₹{{ (summary.balance < 0 ? Math.abs(summary.balance) : 0).toLocaleString('en-IN') }}</div>
         </div>
       </div>
       <div class="summary-item summary-get">
@@ -60,7 +60,7 @@
         </div>
         <div class="summary-content">
           <div class="summary-label">You Will Get</div>
-          <div class="summary-amount text-success">₹{{ summary.totalReceived.toLocaleString('en-IN') }}</div>
+          <div class="summary-amount text-success">₹{{ (summary.balance > 0 ? summary.balance : 0).toLocaleString('en-IN') }}</div>
         </div>
       </div>
     </div>
@@ -85,25 +85,27 @@
                   type="number"
                   label="Amount"
                   variant="outlined"
-                  density="comfortable"
                   prepend-inner-icon="mdi-currency-inr"
                   class="mb-2"
                   autofocus
+                  rounded="xl"
                 />
                 <v-text-field
                   v-model="gaveForm.description"
                   label="Note (optional)"
                   variant="outlined"
-                  density="comfortable"
                   prepend-inner-icon="mdi-note-text"
+                  rounded="xl"
                 />
               </v-card-text>
               <v-card-actions class="px-5 pb-4 ga-3">
-                <v-btn variant="tonal" class="flex-grow-1" @click="isActive.value = false">Cancel</v-btn>
+                <v-btn variant="tonal" class="flex-grow-1" height="57" rounded="xl" @click="isActive.value = false">Cancel</v-btn>
                 <v-btn 
                   variant="flat" 
                   color="error" 
                   class="flex-grow-1"
+                  height="57"
+                  rounded="xl"
                   :disabled="!gaveForm.amount || gaveForm.amount <= 0"
                   @click="saveGave(isActive)"
                 >
@@ -133,25 +135,27 @@
                   type="number"
                   label="Amount"
                   variant="outlined"
-                  density="comfortable"
                   prepend-inner-icon="mdi-currency-inr"
                   class="mb-2"
                   autofocus
+                  rounded="xl"
                 />
                 <v-text-field
                   v-model="gotForm.description"
                   label="Note (optional)"
                   variant="outlined"
-                  density="comfortable"
                   prepend-inner-icon="mdi-note-text"
+                  rounded="xl"
                 />
               </v-card-text>
               <v-card-actions class="px-5 pb-4 ga-3">
-                <v-btn variant="tonal" class="flex-grow-1" @click="isActive.value = false">Cancel</v-btn>
+                <v-btn variant="tonal" class="flex-grow-1" height="57" rounded="xl" @click="isActive.value = false">Cancel</v-btn>
                 <v-btn 
                   variant="flat" 
                   color="success" 
                   class="flex-grow-1"
+                  height="57"
+                  rounded="xl"
                   :disabled="!gotForm.amount || gotForm.amount <= 0"
                   @click="saveGot(isActive)"
                 >
