@@ -30,7 +30,7 @@
     <v-card
       v-if="udhariStore.sortedPeople.length > 0"
       class="mb-6 pa-4 savings-card"
-      variant="flat"
+      variant="tonal"
     >
       <div class="d-flex flex-wrap justify-space-between align-center ga-4">
         <div class="d-flex align-center">

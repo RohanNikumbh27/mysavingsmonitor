@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Header Section -->
-    <div class="mb-6">
+    <div class="mb-8">
       <h1 class="text-h4 text-md-h3 font-weight-bold mb-2">
         <span class="text-gradient">Install App</span>
       </h1>
@@ -10,113 +10,181 @@
       </p>
     </div>
 
-    <!-- Chrome Desktop -->
-    <v-card class="mb-4 savings-card" variant="flat">
-      <v-card-title class="d-flex align-center">
-        <v-icon color="primary" class="mr-2">mdi-google-chrome</v-icon>
-        Chrome (Desktop)
-      </v-card-title>
-      <v-card-text>
-        <v-timeline side="end" density="compact" class="ml-n4">
-          <v-timeline-item dot-color="primary" size="small">
-            <div class="text-body-2">
-              Click the <strong>three dots menu</strong> (⋮) in the top-right corner of Chrome
+    <!-- Accordion for Installation Instructions -->
+    <v-expansion-panels v-model="openPanel" class="mb-5">
+      <!-- Chrome Android (First & Default Open) -->
+      <v-expansion-panel value="android" class="install-card rounded-xl mb-3">
+        <v-expansion-panel-title class="pa-4">
+          <div class="d-flex align-center">
+            <v-avatar color="green-lighten-4" size="44" class="mr-3">
+              <v-icon color="green">mdi-android</v-icon>
+            </v-avatar>
+            <span class="text-h6 font-weight-bold">Chrome (Android)</span>
+          </div>
+        </v-expansion-panel-title>
+        <v-expansion-panel-text>
+          <div class="pa-2">
+            <div class="d-flex align-start mb-4">
+              <v-avatar color="success" size="28" class="mr-3 mt-1">
+                <span class="text-caption font-weight-bold text-white">1</span>
+              </v-avatar>
+              <div class="text-body-1">
+                Tap the <strong>three dots menu</strong> (⋮) in the top-right corner
+              </div>
             </div>
-          </v-timeline-item>
-          <v-timeline-item dot-color="primary" size="small">
-            <div class="text-body-2">
-              Look for <strong>"Install MySavings..."</strong> or <strong>"Save and Share" → "Install page as app"</strong>
+            <div class="d-flex align-start mb-4">
+              <v-avatar color="success" size="28" class="mr-3 mt-1">
+                <span class="text-caption font-weight-bold text-white">2</span>
+              </v-avatar>
+              <div class="text-body-1">
+                Tap <strong>"Add to Home screen"</strong> or <strong>"Install app"</strong>
+              </div>
             </div>
-          </v-timeline-item>
-          <v-timeline-item dot-color="success" size="small">
-            <div class="text-body-2">
-              Click <strong>"Install"</strong> in the popup dialog
+            <div class="d-flex align-start">
+              <v-avatar color="success" size="28" class="mr-3 mt-1">
+                <v-icon size="16">mdi-check</v-icon>
+              </v-avatar>
+              <div class="text-body-1">
+                Tap <strong>"Add"</strong> to confirm
+              </div>
             </div>
-          </v-timeline-item>
-        </v-timeline>
-      </v-card-text>
-    </v-card>
+          </div>
+        </v-expansion-panel-text>
+      </v-expansion-panel>
 
-    <!-- Chrome Android -->
-    <v-card class="mb-4 savings-card" variant="flat">
-      <v-card-title class="d-flex align-center">
-        <v-icon color="success" class="mr-2">mdi-android</v-icon>
-        Chrome (Android)
-      </v-card-title>
-      <v-card-text>
-        <v-timeline side="end" density="compact" class="ml-n4">
-          <v-timeline-item dot-color="success" size="small">
-            <div class="text-body-2">
-              Tap the <strong>three dots menu</strong> (⋮) in the top-right corner
+      <!-- Chrome Desktop -->
+      <v-expansion-panel value="desktop" class="install-card rounded-xl mb-3">
+        <v-expansion-panel-title class="pa-4">
+          <div class="d-flex align-center">
+            <v-avatar color="blue-lighten-4" size="44" class="mr-3">
+              <v-icon color="blue">mdi-google-chrome</v-icon>
+            </v-avatar>
+            <span class="text-h6 font-weight-bold">Chrome (Desktop)</span>
+          </div>
+        </v-expansion-panel-title>
+        <v-expansion-panel-text>
+          <div class="pa-2">
+            <div class="d-flex align-start mb-4">
+              <v-avatar color="primary" size="28" class="mr-3 mt-1">
+                <span class="text-caption font-weight-bold text-white">1</span>
+              </v-avatar>
+              <div class="text-body-1">
+                Click the <strong>three dots menu</strong> (⋮) in the top-right corner of Chrome
+              </div>
             </div>
-          </v-timeline-item>
-          <v-timeline-item dot-color="success" size="small">
-            <div class="text-body-2">
-              Tap <strong>"Add to Home screen"</strong> or <strong>"Install app"</strong>
+            <div class="d-flex align-start mb-4">
+              <v-avatar color="primary" size="28" class="mr-3 mt-1">
+                <span class="text-caption font-weight-bold text-white">2</span>
+              </v-avatar>
+              <div class="text-body-1">
+                Look for <strong>"Install MySavings..."</strong> or <strong>"Save and Share" → "Install page as app"</strong>
+              </div>
             </div>
-          </v-timeline-item>
-          <v-timeline-item dot-color="success" size="small">
-            <div class="text-body-2">
-              Tap <strong>"Add"</strong> to confirm
+            <div class="d-flex align-start">
+              <v-avatar color="success" size="28" class="mr-3 mt-1">
+                <v-icon size="16">mdi-check</v-icon>
+              </v-avatar>
+              <div class="text-body-1">
+                Click <strong>"Install"</strong> in the popup dialog
+              </div>
             </div>
-          </v-timeline-item>
-        </v-timeline>
-      </v-card-text>
-    </v-card>
+          </div>
+        </v-expansion-panel-text>
+      </v-expansion-panel>
 
-    <!-- Safari iOS -->
-    <v-card class="mb-4 savings-card" variant="flat">
-      <v-card-title class="d-flex align-center">
-        <v-icon color="info" class="mr-2">mdi-apple-safari</v-icon>
-        Safari (iPhone / iPad)
-      </v-card-title>
-      <v-card-text>
-        <v-timeline side="end" density="compact" class="ml-n4">
-          <v-timeline-item dot-color="info" size="small">
-            <div class="text-body-2">
-              Tap the <strong>Share button</strong> (□↑) at the bottom of Safari
+      <!-- Safari iOS -->
+      <v-expansion-panel value="ios" class="install-card rounded-xl">
+        <v-expansion-panel-title class="pa-4">
+          <div class="d-flex align-center">
+            <v-avatar color="blue-grey-lighten-4" size="44" class="mr-3">
+              <v-icon color="blue-grey">mdi-apple-safari</v-icon>
+            </v-avatar>
+            <span class="text-h6 font-weight-bold">Safari (iPhone / iPad)</span>
+          </div>
+        </v-expansion-panel-title>
+        <v-expansion-panel-text>
+          <div class="pa-2">
+            <div class="d-flex align-start mb-4">
+              <v-avatar color="info" size="28" class="mr-3 mt-1">
+                <span class="text-caption font-weight-bold text-white">1</span>
+              </v-avatar>
+              <div class="text-body-1">
+                Tap the <strong>Share button</strong> (□↑) at the bottom of Safari
+              </div>
             </div>
-          </v-timeline-item>
-          <v-timeline-item dot-color="info" size="small">
-            <div class="text-body-2">
-              Scroll down and tap <strong>"Add to Home Screen"</strong>
+            <div class="d-flex align-start mb-4">
+              <v-avatar color="info" size="28" class="mr-3 mt-1">
+                <span class="text-caption font-weight-bold text-white">2</span>
+              </v-avatar>
+              <div class="text-body-1">
+                Scroll down and tap <strong>"Add to Home Screen"</strong>
+              </div>
             </div>
-          </v-timeline-item>
-          <v-timeline-item dot-color="info" size="small">
-            <div class="text-body-2">
-              Tap <strong>"Add"</strong> in the top-right corner
+            <div class="d-flex align-start">
+              <v-avatar color="info" size="28" class="mr-3 mt-1">
+                <v-icon size="16">mdi-check</v-icon>
+              </v-avatar>
+              <div class="text-body-1">
+                Tap <strong>"Add"</strong> in the top-right corner
+              </div>
             </div>
-          </v-timeline-item>
-        </v-timeline>
-      </v-card-text>
-    </v-card>
+          </div>
+        </v-expansion-panel-text>
+      </v-expansion-panel>
+    </v-expansion-panels>
 
     <!-- Benefits Card -->
-    <v-card class="savings-card" variant="flat">
-      <v-card-title class="d-flex align-center">
-        <v-icon color="warning" class="mr-2">mdi-star</v-icon>
-        Why Install?
+    <v-card class="install-card rounded-xl" variant="flat">
+      <v-card-title class="d-flex align-center pa-4">
+        <v-avatar color="amber-lighten-4" size="44" class="mr-3">
+          <v-icon color="amber-darken-2">mdi-star</v-icon>
+        </v-avatar>
+        <span class="text-h6 font-weight-bold">Why Install?</span>
       </v-card-title>
-      <v-card-text>
-        <v-list density="compact" class="bg-transparent pa-0">
-          <v-list-item prepend-icon="mdi-rocket-launch" class="px-0">
-            <v-list-item-title>Faster access from your home screen</v-list-item-title>
-          </v-list-item>
-          <v-list-item prepend-icon="mdi-fullscreen" class="px-0">
-            <v-list-item-title>Full-screen experience without browser UI</v-list-item-title>
-          </v-list-item>
-          <v-list-item prepend-icon="mdi-wifi-off" class="px-0">
-            <v-list-item-title>Works offline once installed</v-list-item-title>
-          </v-list-item>
-          <v-list-item prepend-icon="mdi-bell" class="px-0">
-            <v-list-item-title>Receives future update notifications</v-list-item-title>
-          </v-list-item>
-        </v-list>
+      <v-divider />
+      <v-card-text class="pa-4">
+        <div class="d-flex ga-3 flex-wrap">
+          <v-chip color="primary" variant="tonal" prepend-icon="mdi-rocket-launch">
+            Faster Access
+          </v-chip>
+          <v-chip color="success" variant="tonal" prepend-icon="mdi-fullscreen">
+            Full Screen
+          </v-chip>
+          <v-chip color="info" variant="tonal" prepend-icon="mdi-wifi-off">
+            Works Offline
+          </v-chip>
+          <v-chip color="warning" variant="tonal" prepend-icon="mdi-bell">
+            Get Updates
+          </v-chip>
+        </div>
       </v-card-text>
     </v-card>
   </div>
 </template>
 
 <script setup lang="ts">
-// Static page - no script needed
+import { ref } from 'vue'
+
+// Default open panel is Android
+const openPanel = ref('android')
 </script>
+
+<style scoped>
+.install-card {
+  border: 1px solid rgba(var(--v-theme-outline), 0.1);
+  background: rgba(var(--v-theme-surface-variant), 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.install-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.v-expansion-panel {
+  margin-bottom: 0 !important;
+}
+
+.v-expansion-panel::before {
+  box-shadow: none !important;
+}
+</style>

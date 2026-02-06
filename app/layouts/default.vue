@@ -51,7 +51,7 @@
       :rail="!$vuetify.display.mobile && rail"
       @click="rail = false"
       border="none"
-      elevation="1"
+      elevation="0"
     >
      
 
@@ -92,17 +92,32 @@
         <NuxtPage />
       </v-container>
     </v-main>
+
+    <!-- Back to Top Button -->
+    <v-fade-transition>
+      <v-btn
+        v-show="showBackToTop"
+        icon
+        color="primary"
+        size="large"
+        class="back-to-top"
+        @click="scrollToTop"
+      >
+        <v-icon>mdi-chevron-up</v-icon>
+      </v-btn>
+    </v-fade-transition>
   </v-app>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useTheme, useDisplay } from 'vuetify'
 
 const theme = useTheme()
 const display = useDisplay()
 const drawer = ref(false)
 const rail = ref(false)
+const showBackToTop = ref(false)
 
 const isDark = computed(() => theme.global.name.value === 'dark')
 
@@ -113,6 +128,16 @@ const navItems = [
   { title: 'Install App', icon: 'mdi-download', to: '/install' },
 ]
 
+function handleScroll() {
+  // Show button when scrolled past 80vh
+  const scrollThreshold = window.innerHeight * 0.8
+  showBackToTop.value = window.scrollY > scrollThreshold
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
 onMounted(() => {
   const savedTheme = localStorage.getItem('theme')
   if (savedTheme) {
@@ -121,6 +146,13 @@ onMounted(() => {
   
   // Open drawer by default on desktop, closed on mobile
   drawer.value = !display.mobile.value
+  
+  // Add scroll listener
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
 })
 
 function toggleTheme() {
@@ -129,3 +161,13 @@ function toggleTheme() {
   localStorage.setItem('theme', newTheme)
 }
 </script>
+
+<style scoped>
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+</style>
