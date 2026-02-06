@@ -62,7 +62,7 @@
           :title="item.title"
           rounded="xl"
           class="mb-2 pa-5"
-          :active="$route.path === item.to"
+          :active="isItemActive(item)"
           color="primary"
           variant="text"
         />
@@ -95,9 +95,11 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useTheme, useDisplay } from 'vuetify'
+import { useRoute } from 'vue-router'
 
 const theme = useTheme()
 const display = useDisplay()
+const route = useRoute()
 const drawer = ref(false)
 const showBackToTop = ref(false)
 
@@ -141,6 +143,15 @@ function toggleTheme() {
   const newTheme = isDark.value ? 'light' : 'dark'
   theme.global.name.value = newTheme
   localStorage.setItem('theme', newTheme)
+}
+function isItemActive(item: any) {
+  const currentPath = route.path
+
+  if (item.title === 'Udhari') {
+    return currentPath.startsWith('/udhari')
+  }
+
+  return currentPath === item.to
 }
 </script>
 

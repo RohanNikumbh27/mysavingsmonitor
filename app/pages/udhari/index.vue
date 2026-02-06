@@ -59,7 +59,7 @@
       v-if="udhariStore.sortedPeople.length === 0" 
       class="pa-8 text-center savings-card d-flex flex-column justify-center align-center"
       variant="flat"
-      style="min-height: 50vh;"
+      style="min-height: 70vh;"
     >
       <v-icon size="80" color="primary" class="mb-4 opacity-60">mdi-account-cash-outline</v-icon>
       <h3 class="text-h6 font-weight-medium mb-2">No udhari records yet</h3>

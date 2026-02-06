@@ -80,7 +80,7 @@
       v-if="savingsStore.sortedEntries.length === 0" 
       class="pa-8 text-center savings-card d-flex flex-column justify-center align-center"
       variant="flat"
-      style="min-height: 67vh;"
+      style="min-height: 72vh;"
     >
       <v-icon size="80" color="primary" class="mb-4 opacity-60">mdi-piggy-bank-outline</v-icon>
       <h3 class="text-h6 font-weight-medium mb-2">No savings yet</h3>
