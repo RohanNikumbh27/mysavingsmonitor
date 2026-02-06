@@ -36,6 +36,24 @@ export const useUdhariStore = defineStore('udhari', () => {
         }, 0)
     })
 
+    const totalYouWillGive = computed(() => {
+        return people.value.reduce((sum, person) => {
+            const summary = getPersonSummary(person.id)
+            return sum + summary.totalGave
+        }, 0)
+    })
+
+    const totalYouWillGet = computed(() => {
+        return people.value.reduce((sum, person) => {
+            const summary = getPersonSummary(person.id)
+            return sum + summary.totalReceived
+        }, 0)
+    })
+
+    const netBalance = computed(() => {
+        return totalYouWillGive.value - totalYouWillGet.value
+    })
+
     // Get balance for a specific person (positive = they owe you, negative = you owe them)
     function getBalanceByPerson(personId: string): number {
         return transactions.value
@@ -70,7 +88,7 @@ export const useUdhariStore = defineStore('udhari', () => {
         const totalReceived = personTransactions
             .filter(t => t.type === 'received')
             .reduce((sum, t) => sum + t.amount, 0)
-        
+
         return {
             totalGave,
             totalReceived,
@@ -150,6 +168,9 @@ export const useUdhariStore = defineStore('udhari', () => {
         // Getters
         sortedPeople,
         totalOutstanding,
+        totalYouWillGive,
+        totalYouWillGet,
+        netBalance,
 
         // Methods
         getBalanceByPerson,

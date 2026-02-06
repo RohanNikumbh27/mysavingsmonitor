@@ -133,7 +133,15 @@
 
       <!-- Summary Tab -->
       <v-tabs-window-item value="summary">
+        <h2 class="text-h5 font-weight-bold mb-4">Savings Summary</h2>
         <SavingsStats />
+        
+        <div class="my-6">
+          <v-divider></v-divider>
+        </div>
+        
+        <h2 class="text-h5 font-weight-bold mb-4">Udhari Summary</h2>
+        <UdhariStats />
       </v-tabs-window-item>
     </v-tabs-window>
 

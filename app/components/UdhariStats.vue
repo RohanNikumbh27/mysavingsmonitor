@@ -1,21 +1,21 @@
 <template>
   <v-row class="stats-row">
-    <!-- Total Savings Card -->
+    <!-- Total You Will Give Card -->
     <v-col cols="12" sm="6" md="4" class="stats-col">
       <div class="glass-stats-card glass-primary">
         <div class="glass-glow"></div>
         <div class="glass-content">
           <div class="d-flex align-center mb-3">
             <div class="icon-wrapper icon-primary">
-              <v-icon color="white" size="24">mdi-piggy-bank</v-icon>
+              <v-icon color="white" size="24">mdi-arrow-up-circle</v-icon>
             </div>
-            <span class="text-body-2 text-white font-weight-medium ml-3">Total Savings</span>
+            <span class="text-body-2 text-white font-weight-medium ml-3">You Will Give</span>
           </div>
           <h2 class="text-h4 font-weight-bold text-white mb-1">
-            ₹{{ savingsStore.totalSavings.toLocaleString('en-IN') }}
+            ₹{{ udhariStore.totalYouWillGive.toLocaleString('en-IN') }}
           </h2>
           <span class="text-caption text-white-70">
-            From {{ savingsStore.totalEntries }} smart {{ savingsStore.totalEntries === 1 ? 'decision' : 'decisions' }}
+            Total amount to pay
           </span>
         </div>
         <div class="floating-particles">
@@ -24,22 +24,22 @@
       </div>
     </v-col>
 
-    <!-- This Month Card -->
+    <!-- Total You Will Get Card -->
     <v-col cols="12" sm="6" md="4" class="stats-col">
       <div class="glass-stats-card glass-warm">
         <div class="glass-glow"></div>
         <div class="glass-content">
           <div class="d-flex align-center mb-3">
             <div class="icon-wrapper icon-warm">
-              <v-icon color="white" size="24">mdi-calendar-month</v-icon>
+              <v-icon color="white" size="24">mdi-arrow-down-circle</v-icon>
             </div>
-            <span class="text-body-2 text-white font-weight-medium ml-3">This Month</span>
+            <span class="text-body-2 text-white font-weight-medium ml-3">You Will Get</span>
           </div>
           <h2 class="text-h4 font-weight-bold text-white mb-1">
-            ₹{{ savingsStore.thisMonthSavings.toLocaleString('en-IN') }}
+            ₹{{ udhariStore.totalYouWillGet.toLocaleString('en-IN') }}
           </h2>
           <span class="text-caption text-white-70">
-            {{ currentMonth }}
+            Total amount to receive
           </span>
         </div>
         <div class="floating-particles">
@@ -48,22 +48,22 @@
       </div>
     </v-col>
 
-    <!-- Average Savings Card -->
+    <!-- Net Balance Card -->
     <v-col cols="12" sm="6" md="4" class="stats-col">
       <div class="glass-stats-card glass-accent">
         <div class="glass-glow"></div>
         <div class="glass-content">
           <div class="d-flex align-center mb-3">
             <div class="icon-wrapper icon-accent">
-              <v-icon color="white" size="24">mdi-trending-up</v-icon>
+              <v-icon color="white" size="24">mdi-scale-balance</v-icon>
             </div>
-            <span class="text-body-2 text-white font-weight-medium ml-3">Avg. per Entry</span>
+            <span class="text-body-2 text-white font-weight-medium ml-3">Net Balance</span>
           </div>
           <h2 class="text-h4 font-weight-bold text-white mb-1">
-            ₹{{ Math.round(savingsStore.averageSavingsPerEntry).toLocaleString('en-IN') }}
+            ₹{{ Math.abs(udhariStore.netBalance).toLocaleString('en-IN') }}
           </h2>
           <span class="text-caption text-white-70">
-            Per smart decision
+            {{ udhariStore.netBalance >= 0 ? 'You are owed in total' : 'You owe in total' }}
           </span>
         </div>
         <div class="floating-particles">
@@ -75,17 +75,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useSavingsStore } from '~/stores/savingsStore'
+import { useUdhariStore } from '~/stores/udhariStore'
 
-const savingsStore = useSavingsStore()
-
-const currentMonth = computed(() => {
-  return new Date().toLocaleDateString('en-IN', {
-    month: 'long',
-    year: 'numeric',
-  })
-})
+const udhariStore = useUdhariStore()
 </script>
 
 <style scoped>
@@ -93,6 +85,7 @@ const currentMonth = computed(() => {
 .stats-row {
   overflow: visible !important;
   padding: 50px 20px;
+  height: 50vh;
 }
 
 .stats-col {
@@ -118,43 +111,43 @@ const currentMonth = computed(() => {
   z-index: 10;
 }
 
-/* Primary - Blue/Purple gradient */
+/* Primary - Red gradient for Give */
 .glass-primary {
   background: linear-gradient(135deg, 
-    rgba(99, 102, 241, 0.7) 0%, 
-    rgba(139, 92, 246, 0.7) 50%,
-    rgba(168, 85, 247, 0.7) 100%);
-  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);
+    rgba(239, 68, 68, 0.7) 0%, 
+    rgba(220, 38, 38, 0.7) 50%,
+    rgba(185, 28, 28, 0.7) 100%);
+  box-shadow: 0 8px 32px rgba(239, 68, 68, 0.3);
 }
 
 .glass-primary:hover {
-  box-shadow: 0 20px 60px rgba(99, 102, 241, 0.5);
+  box-shadow: 0 20px 60px rgba(239, 68, 68, 0.5);
 }
 
-/* Warm - Orange/Yellow gradient */
+/* Warm - Green gradient for Get */
 .glass-warm {
   background: linear-gradient(135deg, 
-    rgba(251, 146, 60, 0.7) 0%, 
-    rgba(251, 191, 36, 0.7) 50%,
-    rgba(245, 158, 11, 0.7) 100%);
-  box-shadow: 0 8px 32px rgba(251, 146, 60, 0.3);
+    rgba(34, 197, 94, 0.7) 0%, 
+    rgba(22, 163, 74, 0.7) 50%,
+    rgba(21, 128, 61, 0.7) 100%);
+  box-shadow: 0 8px 32px rgba(34, 197, 94, 0.3);
 }
 
 .glass-warm:hover {
-  box-shadow: 0 20px 60px rgba(251, 146, 60, 0.5);
+  box-shadow: 0 20px 60px rgba(34, 197, 94, 0.5);
 }
 
-/* Accent - Pink/Rose gradient */
+/* Accent - Blue/Indigo gradient for Balance */
 .glass-accent {
   background: linear-gradient(135deg, 
-    rgba(236, 72, 153, 0.7) 0%, 
-    rgba(244, 114, 182, 0.7) 50%,
-    rgba(251, 113, 133, 0.7) 100%);
-  box-shadow: 0 8px 32px rgba(236, 72, 153, 0.3);
+    rgba(59, 130, 246, 0.7) 0%, 
+    rgba(37, 99, 235, 0.7) 50%,
+    rgba(29, 78, 216, 0.7) 100%);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
 }
 
 .glass-accent:hover {
-  box-shadow: 0 20px 60px rgba(236, 72, 153, 0.5);
+  box-shadow: 0 20px 60px rgba(59, 130, 246, 0.5);
 }
 
 /* Glass glow effect */
@@ -199,17 +192,17 @@ const currentMonth = computed(() => {
 
 .icon-primary {
   background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
 }
 
 .icon-warm {
   background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 4px 15px rgba(251, 146, 60, 0.3);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
 }
 
 .icon-accent {
   background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
 
 /* Text colors */
