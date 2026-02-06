@@ -109,6 +109,8 @@ const isDark = computed(() => theme.global.name.value === 'dark')
 const navItems = [
   { title: 'Dashboard', icon: 'mdi-view-dashboard', to: '/' },
   { title: 'Savings', icon: 'mdi-cash-multiple', to: '/savings' },
+  { title: 'Udhari', icon: 'mdi-account-cash', to: '/udhari' },
+  { title: 'Install App', icon: 'mdi-download', to: '/install' },
 ]
 
 onMounted(() => {
