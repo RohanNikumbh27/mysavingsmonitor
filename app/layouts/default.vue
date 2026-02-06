@@ -48,13 +48,9 @@
     <!-- Navigation Drawer -->
     <v-navigation-drawer
       v-model="drawer"
-      :rail="!$vuetify.display.mobile && rail"
-      @click="rail = false"
       border="none"
       elevation="0"
     >
-     
-
       <v-divider class="mb-4" />
 
       <v-list nav density="comfortable" class="px-4 pt-0">
@@ -71,19 +67,6 @@
           variant="text"
         />
       </v-list>
-
-      <template v-slot:append v-if="!$vuetify.display.mobile">
-        <div class="pa-2">
-          <v-btn
-            icon
-            variant="text"
-            size="small"
-            @click.stop="rail = !rail"
-          >
-            <v-icon>{{ rail ? 'mdi-chevron-right' : 'mdi-chevron-left' }}</v-icon>
-          </v-btn>
-        </div>
-      </template>
     </v-navigation-drawer>
 
     <!-- Main Content -->
@@ -116,7 +99,6 @@ import { useTheme, useDisplay } from 'vuetify'
 const theme = useTheme()
 const display = useDisplay()
 const drawer = ref(false)
-const rail = ref(false)
 const showBackToTop = ref(false)
 
 const isDark = computed(() => theme.global.name.value === 'dark')
