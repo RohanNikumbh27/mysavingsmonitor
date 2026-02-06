@@ -11,7 +11,7 @@
     </div>
 
     <!-- Tabs -->
-    <div class="d-flex ga-2 mb-4">
+    <div class="d-flex ga-2 mb-4 overflow-x-auto absolute">
       <v-btn
         :variant="activeTab === 'savings' ? 'flat' : 'tonal'"
         :color="activeTab === 'savings' ? 'primary' : undefined"

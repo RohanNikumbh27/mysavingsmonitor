@@ -1,16 +1,16 @@
 <template>
-  <v-dialog v-model="dialog" max-width="500" persistent>
+  <v-dialog v-model="dialog" :width="$vuetify.display.mobile ? '90%' : '500'" persistent>
     <template #activator="{ props: activatorProps }">
       <slot name="activator" :props="activatorProps" />
     </template>
 
-    <v-card class="pa-2">
-      <v-card-title class="text-h6 d-flex align-center">
+    <v-card class="pa-2 rounded-xl">
+      <v-card-title class="text-h6 d-flex align-center pa-4">
         <v-icon color="primary" class="mr-2">mdi-cash-plus</v-icon>
         Add Transaction
       </v-card-title>
 
-      <v-card-text>
+      <v-card-text class="px-4">
         <v-form ref="form" @submit.prevent="handleSubmit">
           <!-- Transaction Type Toggle -->
           <v-btn-toggle
@@ -20,12 +20,13 @@
             class="mb-4 w-100"
             divided
             variant="outlined"
+            rounded="xl"
           >
-            <v-btn value="gave" class="flex-grow-1" :color="formData.type === 'gave' ? 'error' : undefined">
+            <v-btn value="gave" class="flex-grow-1" height="48" :color="formData.type === 'gave' ? 'error' : undefined">
               <v-icon start>mdi-arrow-top-right</v-icon>
               I Gave
             </v-btn>
-            <v-btn value="received" class="flex-grow-1" :color="formData.type === 'received' ? 'success' : undefined">
+            <v-btn value="received" class="flex-grow-1" height="48" :color="formData.type === 'received' ? 'success' : undefined">
               <v-icon start>mdi-arrow-bottom-left</v-icon>
               I Received
             </v-btn>
@@ -40,6 +41,7 @@
             :rules="[rules.required, rules.positive]"
             class="mb-3"
             autofocus
+            rounded="xl"
           />
 
           <v-text-field
@@ -48,6 +50,7 @@
             prepend-inner-icon="mdi-text"
             variant="outlined"
             class="mb-3"
+            rounded="xl"
           />
 
           <!-- Date Picker -->
@@ -65,6 +68,7 @@
                 variant="outlined"
                 readonly
                 :rules="[rules.required]"
+                rounded="xl"
               />
             </template>
             <v-date-picker
@@ -76,12 +80,22 @@
         </v-form>
       </v-card-text>
 
-      <v-card-actions>
-        <v-spacer />
-        <v-btn variant="text" @click="handleClose">Cancel</v-btn>
+      <v-card-actions class="pa-4 pt-0 d-flex ga-3">
+        <v-btn 
+          variant="tonal" 
+          class="flex-grow-1" 
+          height="57" 
+          rounded="xl"
+          @click="handleClose"
+        >
+          Cancel
+        </v-btn>
         <v-btn 
           :color="formData.type === 'gave' ? 'error' : 'success'" 
           variant="elevated" 
+          class="flex-grow-1"
+          height="57"
+          rounded="xl"
           @click="handleSubmit" 
           :loading="loading"
         >

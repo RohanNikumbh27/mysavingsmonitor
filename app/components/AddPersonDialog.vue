@@ -1,16 +1,16 @@
 <template>
-  <v-dialog v-model="dialog" max-width="500" persistent>
+  <v-dialog v-model="dialog" :width="$vuetify.display.mobile ? '90%' : '500'" persistent>
     <template #activator="{ props: activatorProps }">
       <slot name="activator" :props="activatorProps" />
     </template>
 
-    <v-card class="pa-2">
-      <v-card-title class="text-h6 d-flex align-center">
+    <v-card class="pa-2 rounded-xl">
+      <v-card-title class="text-h6 d-flex align-center pa-4">
         <v-icon color="primary" class="mr-2">mdi-account-plus</v-icon>
         Add Person
       </v-card-title>
 
-      <v-card-text>
+      <v-card-text class="px-4">
         <v-form ref="form" @submit.prevent="handleSubmit">
           <v-text-field
             v-model="formData.name"
@@ -20,6 +20,7 @@
             :rules="[rules.required]"
             class="mb-3"
             autofocus
+            rounded="xl"
           />
 
           <v-text-field
@@ -28,14 +29,30 @@
             prepend-inner-icon="mdi-phone"
             variant="outlined"
             type="tel"
+            rounded="xl"
           />
         </v-form>
       </v-card-text>
 
-      <v-card-actions>
-        <v-spacer />
-        <v-btn variant="text" @click="handleClose">Cancel</v-btn>
-        <v-btn color="primary" variant="elevated" @click="handleSubmit" :loading="loading">
+      <v-card-actions class="pa-4 pt-0 d-flex ga-3">
+        <v-btn 
+          variant="tonal" 
+          class="flex-grow-1" 
+          height="57" 
+          rounded="xl"
+          @click="handleClose"
+        >
+          Cancel
+        </v-btn>
+        <v-btn 
+          color="primary" 
+          variant="elevated" 
+          class="flex-grow-1" 
+          height="57" 
+          rounded="xl"
+          @click="handleSubmit" 
+          :loading="loading"
+        >
           Add Person
         </v-btn>
       </v-card-actions>
