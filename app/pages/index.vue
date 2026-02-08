@@ -13,7 +13,7 @@
     <!-- Tabs -->
     <div class="d-flex ga-1 mb-4 overflow-x-auto absolute">
       <v-btn
-        :variant="activeTab === 'savings' ? 'flat' : 'text'"
+        :variant="activeTab === 'savings' ? 'flat' : 'tonal'"
         :color="activeTab === 'savings' ? 'primary' : undefined"
         prepend-icon="mdi-piggy-bank"
         rounded="pill"
@@ -23,7 +23,7 @@
         Savings
       </v-btn>
       <v-btn
-        :variant="activeTab === 'udhari' ? 'flat' : 'text'"
+        :variant="activeTab === 'udhari' ? 'flat' : 'tonal'"
         :color="activeTab === 'udhari' ? 'primary' : undefined"
         prepend-icon="mdi-account-cash"
         rounded="pill"
@@ -33,7 +33,7 @@
         Udhari
       </v-btn>
       <v-btn
-        :variant="activeTab === 'summary' ? 'flat' : 'text'"
+        :variant="activeTab === 'summary' ? 'flat' : 'tonal'"
         :color="activeTab === 'summary' ? 'primary' : undefined"
         prepend-icon="mdi-chart-box-outline"
         rounded="pill"
